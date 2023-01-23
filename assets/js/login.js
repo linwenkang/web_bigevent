@@ -34,12 +34,20 @@ $(function(){
         e.preventDefault()
         let username = $('#form_reg [name=username]').val()
         let password = $('#form_reg [name=password]').val()
-        $.post('http://www.liulongbin.top:3007/api/reguser',{username:username,password:password},function(res){
-            if(res.status !== 0){
-                return layer.msg(res.message)
+        $.ajax({
+            type:'POST',
+            url:'http://www.liulongbin.top:3007/api/reguser',
+            data:{
+                username:username,
+                password:password
+            },
+            success:function(res){
+                if(res.status !== 0){
+                    return layer.msg(res.message)
+                }
+                layer.msg('注册成功，请登录')
+                $('#link_login').click()
             }
-            layer.msg('注册成功，请登录')
-            $('#link_login').click()
         })
     })
 
