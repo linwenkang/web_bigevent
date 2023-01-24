@@ -35,8 +35,8 @@ $(function(){
         let username = $('#form_reg [name=username]').val()
         let password = $('#form_reg [name=password]').val()
         $.ajax({
-            type:'POST',
-            url:'http://www.liulongbin.top:3007/api/reguser',
+            method:'POST',
+            url:'/api/reguser',
             data:{
                 username:username,
                 password:password
@@ -58,8 +58,8 @@ $(function(){
         console.log('username:'+username);
         console.log('password:'+password);
         $.ajax({
-            type:'POST',
-            url:'http://www.liulongbin.top:3007/api/login',
+            method:'POST',
+            url:'/api/login',
             data:{
                 username:username,
                 password:password 
