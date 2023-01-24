@@ -2,7 +2,7 @@ $(function(){
     getUserInfo()
 })
 
-var layer = layui.layer
+let layer = layui.layer
 
 $('#btnlogOut').on('click',function(){
     layer.confirm('确定退出?', {icon: 3, title:'提示'}, function(index){
