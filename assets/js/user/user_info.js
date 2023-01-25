@@ -39,9 +39,9 @@ $(function(){
             data:$(this).serialize(),
             success:function(res){
                 if(res.status!==0){
-                    return layer.msg('更新用户信息失败！')
+                    return layer.msg(res.message)
                 }
-                console.log(res);
+                layer.msg(res.message)
                 window.parent.getUserInfo()
             }
         })
