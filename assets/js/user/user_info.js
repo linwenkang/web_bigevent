@@ -20,7 +20,6 @@ $(function(){
                 if(res.status!==0){
                     return layer.msg('res.message')
                 }
-                console.log(res.data);
                 form.val('formUserInfo',res.data)
             }
         })
