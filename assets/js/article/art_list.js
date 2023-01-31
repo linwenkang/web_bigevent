@@ -76,14 +76,12 @@ $(function(){
     function renderpagesize(total){
         laypage.render({
             elem: 'pageBox', // 分页容器的 Id
-            count: 7, // 总数据条数
+            count: total, // 总数据条数
             limit: data.pagesize, // 每页显示几条数据
             curr: data.pagenum, // 设置默认被选中的分页'
             limits:[2, 3, 5, 10, 20],
             layout:['count','limit','prev', 'page', 'next','skip','refresh'],
             jump:function(obj,first){
-                console.log(obj.curr)
-                console.log(first)
                 data.pagenum = obj.curr
                 data.pagesize = obj.limit
                 if(!first){
@@ -92,6 +90,31 @@ $(function(){
             }
         })
     }
+
+
+    $('tbody').on('click','.btn_Delete',function(){
+        let len = $('.btn_Delete').length
+        let id = $(this).attr('data-id')
+        layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+            $.ajax({
+                method:'GET',
+                url:'/my/article/delete/'+id,
+                success:function(res){
+                    if(res.status!==0){
+                        return layer.msg(res.message)
+                    }
+                    layer.msg(res.message)
+                    
+                    if(len === 1){
+                        data.pagenum = data.pagenum === 1 ? 1 : data.pagenum - 1
+                    }
+                    getListShow()
+                }
+            })
+            layer.close(index);
+          });
+
+    })
 
 
 })
